@@ -5,13 +5,13 @@ const getCurrentUser = async (req: Request, res: Response) => {
   try {
     const currentUser = await User.findOne({ _id: req.userId });
     if (!currentUser) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "Usuário não encontrado" });
     }
 
     res.json(currentUser);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Something went wrong" });
+    return res.status(500).json({ message: "Ooops...Algo deu errado." });
   }
 };
 
@@ -30,7 +30,7 @@ const createCurrentUser = async (req: Request, res: Response) => {
     res.status(201).json(newUser.toObject());
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Error creating user" });
+    res.status(500).json({ message: "Erro ao criar usuário" });
   }
 };
 
@@ -40,7 +40,7 @@ const updateCurrentUser = async (req: Request, res: Response) => {
     const user = await User.findById(req.userId);
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "Usuário não encontrado." });
     }
 
     user.name = name;
@@ -53,7 +53,7 @@ const updateCurrentUser = async (req: Request, res: Response) => {
     res.send(user);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Error updating user" });
+    res.status(500).json({ message: "Erro ao atualizar usuário" });
   }
 };
 
